@@ -1,0 +1,35 @@
+{
+  "name": "mui-passfather",
+  "version": "1.0.0",
+  "description": "Description",
+  "author": "Evgeny Vyushin <e@vyushin.ru> (https://github.com/vyushin)",
+  "contributors": [
+    "Evgeny Vyushin <e@vyushin.ru> (https://github.com/vyushin)"
+  ],
+  "maintainers": [
+    "Evgeny Vyushin <e@vyushin.ru> (https://github.com/vyushin)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vyushin/mui-passfather"
+  },
+  "bugs": {
+    "url": "https://github.com/vyushin/mui-passfather/issues"
+  },
+  "homepage": "https://github.com/vyushin/mui-passfather",
+  "main": "./index.js",
+  "types": "./src/mui-passfather.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "material-ui"
+  ],
+  "directories": {
+    "doc": "./README.md"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.7.2",
+    "passfather": "^1.4.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}

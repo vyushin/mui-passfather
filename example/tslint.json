@@ -1,0 +1,4 @@
+{
+  "extends": ["../tslint.json"],
+  "quotemark": [true, "single", "jsx-single", "tsx-single"]
+}
