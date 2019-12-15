@@ -1,7 +1,7 @@
 {
   "name": "mui-passfather",
   "version": "1.0.0",
-  "description": "Description",
+  "description": "mui-passfather is material-ui text field component allowing generate strong password or random string.",
   "author": "Evgeny Vyushin <e@vyushin.ru> (https://github.com/vyushin)",
   "contributors": [
     "Evgeny Vyushin <e@vyushin.ru> (https://github.com/vyushin)"
@@ -21,13 +21,20 @@
   "types": "./src/mui-passfather.d.ts",
   "license": "MIT",
   "keywords": [
-    "material-ui"
+    "material-ui",
+    "react",
+    "react-component",
+    "passfather",
+    "password",
+    "password-generator"
   ],
   "directories": {
-    "doc": "./README.md"
+    "doc": "./README.md",
+    "example": "./example"
   },
   "dependencies": {
     "@material-ui/core": "^4.7.2",
+    "@material-ui/icons": "^4.5.1",
     "passfather": "^1.4.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
