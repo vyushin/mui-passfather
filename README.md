@@ -5,6 +5,8 @@
 **mui-passfather** is [material-ui](https://material-ui.com/) text field component allowing generate strong password or random string.<br/>
 To generate random string it uses [passfather](https://www.npmjs.com/package/passfather).
 
+![mui-passfather demo gif](https://user-images.githubusercontent.com/8006957/70857920-951b1180-1f08-11ea-88bc-68d704f9c94d.gif)
+
 ## Installation
 
 ###### NPM
