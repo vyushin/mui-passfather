@@ -49,9 +49,14 @@ Full example is located inside [example](https://github.com/vyushin/mui-passfath
 |value|any|`''`|The value.
 |generateKey|number|`0`|The key to generate password programmatically. Pass `Date.now()` every time when needs generate new password programmatically.
 |hideGenerateButton|boolean|`false`|Hides generate button.
+|hideVisibilityButton|boolean|`false`|Hides visibility button.
+|hideCopyToClipboardButton|boolean|`false`|Hides copy to clipboard button button.
 |disableGenerateButtonDuration|boolean|`false`|Disable generate button animation.
-|onGenerate|function| |Callback fired when password generated.
-|onChange|function| |Callback fired when the value is changed.
+|onGenerate|function| |Fires when password generated
+|onChange|function| |Fires when the value change
+|onCopyToClipboard|function| |Fires by press on copy to clipboard button
+|onCopyToClipboardFailed|function| |Fires if cope to clipboard is failed
+|onToggleVisibility|function| |Fires when visibility changed
 ## Contributing
 See [contributing](https://github.com/vyushin/mui-passfather/blob/master/CONTRIBUTING.md) guideline.
 
