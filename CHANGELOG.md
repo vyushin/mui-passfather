@@ -1,4 +1,4 @@
-## 1.0.2 (December 15, 2019)
+## 1.0.2 (April 27, 2020)
 
 * Add copy to clipboard button
 * Add change visibility button
