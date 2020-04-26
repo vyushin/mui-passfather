@@ -120,7 +120,7 @@ const MuiPassfather = (
         .then(
           (result) => {
             if (result.state === 'granted' || result.state === 'prompt') {
-              navigator.clipboard.writeText(value).then(() => onCopyToClipboard(valueState));
+              navigator.clipboard.writeText(valueState).then(() => onCopyToClipboard(valueState));
             }
           },
           () => onCopyToClipboardFailed(),
