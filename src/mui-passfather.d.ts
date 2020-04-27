@@ -1,11 +1,18 @@
 declare module "mui-passfather" {
   import { ComponentType, ReactElement } from 'react';
-  import { TextFieldProps } from "@material-ui/core";
+  import { TextFieldProps, IconProps, IconButtonProps } from "@material-ui/core";
   import { PassfatherOptions } from 'passfather';
 
   export interface MuiPassfatherProps {
     TextFieldProps?: Partial<TextFieldProps>;
     PassfatherOptions?: PassfatherOptions;
+    VisibilityButtonProps?: Partial<IconButtonProps>;
+    CopyToClipboardButtonProps?: Partial<IconButtonProps>;
+    GenerateButtonProps?: Partial<IconButtonProps>;
+    AutorenewIconProps?: Partial<IconProps>;
+    VisibilityIconProps?: Partial<IconProps>;
+    VisibilityOffIconProps?: Partial<IconProps>;
+    FileCopyOutlinedIconProps?: Partial<IconProps>;
     value?: TextFieldProps['value'];
     generateKey?: number;
     hideGenerateButton?: boolean;

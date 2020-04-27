@@ -11,10 +11,25 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '100%',
     justifyContent: 'center',
   },
+  iconBtn: {
+    margin: theme.spacing(0, 1),
+  },
+  icon: {
+    fontSize: '1rem',
+  },
 }));
 
 const App = () => {
   const classes = useStyles({});
+
+  const buttonProps = {
+    size: 'small' as 'small',
+    classes: { root: classes.iconBtn },
+  };
+
+  const iconProps = {
+    classes: { root: classes.icon }
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -30,7 +45,15 @@ const App = () => {
           PassfatherOptions={{
             symbols: false,
             length: 10,
-          }}/>
+          }}
+          VisibilityButtonProps={buttonProps}
+          CopyToClipboardButtonProps={buttonProps}
+          GenerateButtonProps={buttonProps}
+          AutorenewIconProps={iconProps}
+          VisibilityIconProps={iconProps}
+          VisibilityOffIconProps={iconProps}
+          FileCopyOutlinedIconProps={iconProps}
+        />
       </div>
     </ThemeProvider>
   );
