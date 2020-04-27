@@ -46,6 +46,8 @@ Full example is located inside [example](https://github.com/vyushin/mui-passfath
 |---|---|---|---
 |TextFieldProps|object|`{}`|Props applied to the [TextField](https://material-ui.com/api/text-field/#textfield-api). component.
 |PassfatherOptions|object|`{}`|Passfather [options](https://www.npmjs.com/package/passfather#options).
+|VisibilityButtonProps,<br/>CopyToClipboardButtonProps,<br/>GenerateButtonProps|object|`{}`|Props applied to the [IconButton](https://material-ui.com/ru/api/icon-button/#iconbutton-api). component.
+|AutorenewIconProps,<br/>VisibilityIconProps,<br/>VisibilityOffIconProps<br/>FileCopyOutlinedIconProps|object|`{}`|Props applied to the [Icon](https://material-ui.com/ru/api/icon/#icon-api). component.
 |value|any|`''`|The value.
 |generateKey|number|`0`|The key to generate password programmatically. Pass `Date.now()` every time when needs generate new password programmatically.
 |hideGenerateButton|boolean|`false`|Hides generate button.

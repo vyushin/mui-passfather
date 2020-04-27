@@ -1,5 +1,5 @@
 import { default as React, useState, useCallback, useMemo, useEffect } from 'react';
-import { makeStyles, useTheme, TextField, InputAdornment, IconButton } from '@material-ui/core';
+import {makeStyles, useTheme, TextField, InputAdornment, IconButton, IconButtonProps} from '@material-ui/core';
 import { default as AutorenewIcon } from '@material-ui/icons/Autorenew';
 import { default as VisibilityOffIcon } from '@material-ui/icons/VisibilityOff';
 import { default as VisibilityIcon } from '@material-ui/icons/Visibility';
@@ -27,6 +27,13 @@ const MuiPassfather = (
   {
     TextFieldProps = {},
     PassfatherOptions = {},
+    VisibilityButtonProps = {},
+    CopyToClipboardButtonProps = {},
+    GenerateButtonProps = {},
+    AutorenewIconProps = {},
+    VisibilityIconProps = {},
+    VisibilityOffIconProps = {},
+    FileCopyOutlinedIconProps = {},
     value = '',
     generateKey = 0,
     hideGenerateButton = false,
@@ -129,6 +136,52 @@ const MuiPassfather = (
     [onCopyToClipboard, onCopyToClipboardFailed, valueState],
   )
 
+  const visibilityButtonProps = useMemo(
+    () => {
+      const result = omit(VisibilityButtonProps, ['onClick']);
+      result.onClick = (e) => {
+        handleToggleVisibility(e);
+        VisibilityButtonProps.onClick && VisibilityButtonProps.onClick(e);
+      };
+      return result;
+    },
+    [VisibilityButtonProps, handleToggleVisibility],
+  );
+
+  const copyToClipboardButtonProps = useMemo(
+    () => {
+      const result = omit(CopyToClipboardButtonProps, ['onClick']);
+      result.onClick = (e) => {
+        handleCopyToClipboard(e);
+        CopyToClipboardButtonProps.onClick && CopyToClipboardButtonProps.onClick(e);
+      };
+      return result;
+    },
+    [CopyToClipboardButtonProps, handleCopyToClipboard],
+  );
+
+  const generateButtonProps = useMemo(
+    () => {
+      const result = omit(GenerateButtonProps, ['onClick']);
+      result.onClick = (e) => {
+        handleGenerate(e);
+        GenerateButtonProps.onClick && GenerateButtonProps.onClick(e);
+      };
+      result.classes = {
+        ...GenerateButtonProps.classes,
+        root: clsx(
+          {
+            [classes.generateButtonRoot]: true,
+            [classes.generateButtonRootRotate]: !disableGenerateButtonDuration && isAnimateGenerateButtonKey,
+          },
+          (GenerateButtonProps.classes && GenerateButtonProps.classes.root)
+        ),
+      }
+      return result;
+    },
+    [GenerateButtonProps, handleGenerate],
+  );
+
   return (
     <TextField
       value={valueState}
@@ -141,26 +194,21 @@ const MuiPassfather = (
             {isEndAdornmentVisible && (
               <InputAdornment position="end">
                 {!hideVisibilityButton && (
-                  <IconButton onClick={handleToggleVisibility}>
-                    {inputType === 'password' ? <VisibilityOffIcon/> : <VisibilityIcon/>}
+                  <IconButton {...visibilityButtonProps}>
+                    {inputType === 'password'
+                      ? <VisibilityOffIcon {...VisibilityOffIconProps}/>
+                      : <VisibilityIcon {...VisibilityIconProps}/>
+                    }
                   </IconButton>
                 )}
                 {!hideCopyToClipboardButton && (
-                  <IconButton onClick={handleCopyToClipboard}>
-                    <FileCopyOutlinedIcon/>
+                  <IconButton {...copyToClipboardButtonProps}>
+                    <FileCopyOutlinedIcon {...FileCopyOutlinedIconProps}/>
                   </IconButton>
                 )}
                 {!hideGenerateButton && (
-                  <IconButton
-                    onClick={handleGenerate}
-                    classes={{
-                      root: clsx({
-                        [classes.generateButtonRoot]: true,
-                        [classes.generateButtonRootRotate]: !disableGenerateButtonDuration && isAnimateGenerateButtonKey,
-                      }),
-                    }}
-                  >
-                    <AutorenewIcon/>
+                  <IconButton {...generateButtonProps}>
+                    <AutorenewIcon {...AutorenewIconProps}/>
                   </IconButton>
                 )}
               </InputAdornment>
