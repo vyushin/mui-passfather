@@ -1,2 +1,5 @@
-import { MuiPassfather } from './src/mui-passfather.jsx';
-export default MuiPassfather;
+import { MuiPassfather } from './src/MuiPassfather.jsx';
+export {
+  MuiPassfather as default,
+  MuiPassfather,
+};

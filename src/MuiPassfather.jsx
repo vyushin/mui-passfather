@@ -1,14 +1,13 @@
-import { default as React, useState, useCallback, useMemo, useEffect } from 'react';
-import {makeStyles, useTheme, TextField, InputAdornment, IconButton, IconButtonProps} from '@material-ui/core';
+import { default as React, useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import { makeStyles, useTheme, TextField, InputAdornment, IconButton } from '@material-ui/core';
 import { default as AutorenewIcon } from '@material-ui/icons/Autorenew';
 import { default as VisibilityOffIcon } from '@material-ui/icons/VisibilityOff';
 import { default as VisibilityIcon } from '@material-ui/icons/Visibility';
 import { default as FileCopyOutlinedIcon } from '@material-ui/icons/FileCopyOutlined';
 import passfather from 'passfather';
 import clsx from 'clsx';
-
 import { LOG_MESSAGE } from './constants';
-import { log, omit } from './utils';
+import { log, omit, clipboardWrite } from './utils';
 
 const useStyles = makeStyles((theme) => ({
   generateButtonRoot: {
@@ -20,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
       ['transform'],
       { duration: theme.transitions.duration.shorter }, // Should be the same duration as in generate handler setTimeout
     ),
+  },
+  input: {
+    '::ms-clear': {
+      display: 'none',
+    },
   },
 }));
 
@@ -45,10 +49,14 @@ const MuiPassfather = (
     onCopyToClipboard = () => {},
     onCopyToClipboardFailed = () => {},
     onToggleVisibility = () => {},
+    renderVisibilityButton = null,
+    renderCopyToClipboardButton = null,
+    renderGenerateButton = null,
   }
 ) => {
   const theme = useTheme();
   const classes = useStyles({});
+  const inputRef = useRef(null);
   const [isAnimateGenerateButtonKey, setAnimateGenerateButtonKey] = useState(false);
   const [inputType, setInputType] = useState('password');
   const [valueState, setValueState] = useState(value);
@@ -112,7 +120,7 @@ const MuiPassfather = (
   );
 
   const handleToggleVisibility = useCallback(
-    () => {
+    (e) => {
       const visibledInputType = (TextFieldProps.type && TextFieldProps.type !== 'password') ? TextFieldProps.type : 'text';
       const newInputType = inputType === 'password' ? visibledInputType : 'password';
       setInputType(newInputType);
@@ -121,19 +129,14 @@ const MuiPassfather = (
     [inputType, TextFieldProps],
   );
 
+  const handleCopyToClipboardFailed = useCallback(
+    (e) => onCopyToClipboardFailed(),
+    [onCopyToClipboardFailed],
+  )
+
   const handleCopyToClipboard = useCallback(
-    () => {
-      navigator.permissions.query({ name: 'clipboard-write' })
-        .then(
-          (result) => {
-            if (result.state === 'granted' || result.state === 'prompt') {
-              navigator.clipboard.writeText(valueState).then(() => onCopyToClipboard(valueState));
-            }
-          },
-          () => onCopyToClipboardFailed(),
-        );
-    },
-    [onCopyToClipboard, onCopyToClipboardFailed, valueState],
+    (e) => clipboardWrite(inputRef.current).then(onCopyToClipboard).catch(handleCopyToClipboardFailed),
+    [onCopyToClipboard, handleCopyToClipboardFailed, inputRef],
   )
 
   const visibilityButtonProps = useMemo(
@@ -188,28 +191,56 @@ const MuiPassfather = (
       onChange={handleChange}
       type={inputType}
       InputProps={{
+        inputRef,
         endAdornment: (
           <>
             {TextFieldProps.InputProps && TextFieldProps.InputProps.endAdornment || ''}
             {isEndAdornmentVisible && (
               <InputAdornment position="end">
                 {!hideVisibilityButton && (
-                  <IconButton {...visibilityButtonProps}>
-                    {inputType === 'password'
-                      ? <VisibilityOffIcon {...VisibilityOffIconProps}/>
-                      : <VisibilityIcon {...VisibilityIconProps}/>
-                    }
-                  </IconButton>
+                  !renderVisibilityButton && (
+                    <IconButton {...visibilityButtonProps}>
+                      {inputType === 'password'
+                        ? <VisibilityOffIcon {...VisibilityOffIconProps}/>
+                        : <VisibilityIcon {...VisibilityIconProps}/>
+                      }
+                    </IconButton>
+                  )
+                  ||
+                  renderVisibilityButton({
+                    handleToggleVisibility,
+                    visibilityButtonProps,
+                    VisibilityIconProps,
+                    VisibilityOffIconProps,
+                    isVisible: inputType !== 'password',
+                  })
                 )}
                 {!hideCopyToClipboardButton && (
-                  <IconButton {...copyToClipboardButtonProps}>
-                    <FileCopyOutlinedIcon {...FileCopyOutlinedIconProps}/>
-                  </IconButton>
+                  !renderCopyToClipboardButton && (
+                    <IconButton {...copyToClipboardButtonProps}>
+                      <FileCopyOutlinedIcon {...FileCopyOutlinedIconProps}/>
+                    </IconButton>
+                  )
+                  ||
+                  renderCopyToClipboardButton({
+                    FileCopyOutlinedIconProps,
+                    handleCopyToClipboard,
+                    CopyToClipboardButtonProps: copyToClipboardButtonProps,
+                    copiedValue: valueState,
+                  })
                 )}
                 {!hideGenerateButton && (
-                  <IconButton {...generateButtonProps}>
-                    <AutorenewIcon {...AutorenewIconProps}/>
-                  </IconButton>
+                  !renderGenerateButton && (
+                    <IconButton {...generateButtonProps}>
+                      <AutorenewIcon {...AutorenewIconProps}/>
+                    </IconButton>
+                  )
+                  ||
+                  renderGenerateButton({
+                    handleGenerate,
+                    AutorenewIconProps,
+                    GenerateButtonProps: generateButtonProps,
+                  })
                 )}
               </InputAdornment>
             )}

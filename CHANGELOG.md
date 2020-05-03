@@ -1,3 +1,8 @@
+## 1.1.0 (May 05, 2020)
+
+* Add button render props - renderVisibilityButton, renderCopyToClipboardButton, renderGenerateButton;
+* Fix copy to clipboard bugs
+
 ## 1.0.4 (April 28, 2020)
 
 * Add new props to customization buttons (VisibilityButtonProps, CopyToClipboardButtonProps, GenerateButtonProps);
