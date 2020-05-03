@@ -60,8 +60,8 @@ Full example is located inside [example](https://github.com/vyushin/mui-passfath
 |onCopyToClipboardFailed|function| |Fires if cope to clipboard is failed
 |onToggleVisibility|function| |Fires when visibility changed
 |renderVisibilityButton|function ({ isVisible, VisibilityButtonProps, VisibilityIconProps, VisibilityOffIconProps, handleToggleVisibility }) => ReactNode|null|Render custom visibility button
-|renderCopyToClipboardButton|function ({ copiedValue, CopyToClipboardButtonProps, FileCopyOutlinedIconProps, handleCopyToClipboard }) => ReactNode|null|Render custom visibility button
-|renderGenerateButton|function ({ handleGenerate, GenerateButtonProps, AutorenewIconProps }) => ReactNode|null|Render custom visibility button
+|renderCopyToClipboardButton|function ({ copiedValue, CopyToClipboardButtonProps, FileCopyOutlinedIconProps, handleCopyToClipboard }) => ReactNode|null|Render custom copy to clipboard button
+|renderGenerateButton|function ({ handleGenerate, GenerateButtonProps, AutorenewIconProps }) => ReactNode|null|Render custom generate button
 ## Contributing
 See [contributing](https://github.com/vyushin/mui-passfather/blob/master/CONTRIBUTING.md) guideline.
 
