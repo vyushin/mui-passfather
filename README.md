@@ -16,7 +16,7 @@ To generate random string it uses [passfather](https://www.npmjs.com/package/pas
 `yarn add mui-passfather`
 
 ## Example
-
+[![Edit mui-passfather](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mui-passfather-s8jhj)
 ```jsx harmony
 // Import react and other, you know...
 import MuiPassfather from 'mui-passfather';
@@ -59,6 +59,9 @@ Full example is located inside [example](https://github.com/vyushin/mui-passfath
 |onCopyToClipboard|function| |Fires by press on copy to clipboard button
 |onCopyToClipboardFailed|function| |Fires if cope to clipboard is failed
 |onToggleVisibility|function| |Fires when visibility changed
+|renderVisibilityButton|function ({ isVisible, VisibilityButtonProps, VisibilityIconProps, VisibilityOffIconProps, handleToggleVisibility }) => ReactNode|null|Render custom visibility button
+|renderCopyToClipboardButton|function ({ copiedValue, CopyToClipboardButtonProps, FileCopyOutlinedIconProps, handleCopyToClipboard }) => ReactNode|null|Render custom visibility button
+|renderGenerateButton|function ({ handleGenerate, GenerateButtonProps, AutorenewIconProps }) => ReactNode|null|Render custom visibility button
 ## Contributing
 See [contributing](https://github.com/vyushin/mui-passfather/blob/master/CONTRIBUTING.md) guideline.
 

@@ -1,6 +1,6 @@
 {
   "name": "mui-passfather",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "mui-passfather is material-ui text field component allowing generate strong password or random string.",
   "author": "Evgeny Vyushin <e@vyushin.ru> (https://github.com/vyushin)",
   "contributors": [
@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/vyushin/mui-passfather",
   "main": "./index.js",
-  "types": "./src/mui-passfather.d.ts",
+  "types": "./src/MuiPassfather.d.ts",
   "license": "MIT",
   "keywords": [
     "material-ui",
