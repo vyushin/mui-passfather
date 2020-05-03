@@ -16,7 +16,7 @@ const execCopyCommand = (input, onSuccess, onFailure) => {
     return;
   }
   try {
-    const container = document.querySelector(':first-child');
+    const container = document.querySelector('body') || document.querySelector(':first-child');
     const shadowInput = document.createElement('input');
     shadowInput.type = 'text';
     shadowInput.value = input.value;
