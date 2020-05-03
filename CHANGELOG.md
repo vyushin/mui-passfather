@@ -1,3 +1,7 @@
+## 1.1.1 (May 05, 2020)
+
+* Fix EDGE copy to clipboard bug
+
 ## 1.1.0 (May 05, 2020)
 
 * Add button render props - renderVisibilityButton, renderCopyToClipboardButton, renderGenerateButton;
