@@ -1,3 +1,8 @@
+## 2.0.0-beta.5 (September 16, 2020)
+
+* Move dependencies to peer dependencies
+* Working with React to 17.0.0-rc.1
+
 ## 1.1.1 (May 05, 2020)
 
 * Fix EDGE copy to clipboard bug
